@@ -1,0 +1,77 @@
+@font-face {
+  font-family: "IndieFlower";
+  src: url("./fonts/Indie_Flower/IndieFlower-Regular.ttf");
+}
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("./fonts/Open_Sans/OpenSans-Regular.ttf");
+}
+
+body {
+  margin: 0;
+  font-size: 16px;
+  font-family: "OpenSans", sans-serif;
+}
+
+.main-container {
+  width: 100vw;
+  max-width: 480px;
+  margin: 4rem auto;
+}
+
+.todo-list {
+  list-style-type: none;
+  padding: 0 2rem;
+}
+
+.todo-list-item {
+  align-items: center;
+  display: flex;
+}
+
+.todo-list-item-checkbox {
+  margin-right: 0.5rem;
+}
+
+.todo-list-item + .todo-list-item {
+  margin-top: 0.5rem;
+}
+
+.todo-list-item-remove {
+  color: red;
+  background: none;
+  border: none;
+  margin-left: 0.2rem;
+}
+
+h1 {
+  font-family: "IndieFlower", cursive;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  margin: 2.5rem 0;
+  text-align: center;
+}
+
+.new-todo-list-item-message {
+  font-size: 1.2rem;
+  padding: 0 0.5rem;
+  font-family: "OpenSans", sans-serif;
+  width: 66%;
+}
+
+.new-todo-list-item-button {
+  font-family: "IndieFlower", cursive;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  background: none;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+}
