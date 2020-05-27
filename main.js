@@ -18,40 +18,48 @@ function loadList() {
 Vue.component("todo-item", {
   template: `
     <li class="todo-list-item">
-      <input type="checkbox" v-model="todo.checked" class="todo-list-item-checkbox" />
-      {{ todo.message }}
-      <button v-on:click="handleRemove(index)" class="todo-list-item-remove">X</button>
+      <input v-bind:id="checkboxId" type="checkbox" v-model="todo.done" class="todo-list-item-checkbox" />
+      <label v-bind:for="checkboxId" v-bind:class="{ done: todo.done}">{{ todo.message }}</label>
+      <button v-on:click="handleRemove(index)" type="button" class="todo-list-item-remove">X</button>
     </li>`,
   props: ["index", "todo"],
   methods: {
     handleRemove: function (index) {
-      console.log("removing item!", index);
       this.$emit("remove", index);
     },
+    getCheckboxId: function (index) {
+      return `check-itemzz-${index}`;
+    },
   },
+  computed: {
+    checkboxId: function() {
+      return `item-checkbox-${this.index}`;
+    }
+  }
 });
 
 /* eslint-disable-next-line no-unused-vars */
 var vm = new Vue({
   el: "#app",
   data: {
-    message: "yarhar",
-    seen: true,
     todos: loadList(),
     form: {
-      itemName: "test",
+      itemName: "",
     },
   },
   methods: {
-    testFunction: function () {
-      this.todos = [
-        ...this.todos,
-        { message: this.form.itemName, checked: false },
-      ];
-      this.form.itemName = "";
+    addItem: function (event) {
+      event.preventDefault();
+      const itemName = this.form.itemName;
+      if (itemName) {
+        this.todos = [
+          ...this.todos,
+          { message: this.form.itemName, done: false },
+        ];
+        this.form.itemName = "";
+      }
     },
     removeItem: function (index) {
-      console.log("removing in parent!", index);
       const tempTodos = [...this.todos];
       tempTodos.splice(index, 1);
       this.todos = tempTodos;
@@ -60,7 +68,6 @@ var vm = new Vue({
   watch: {
     todos: {
       handler: function (todoList) {
-        console.log("change in todoList!", todoList);
         saveList(todoList);
       },
       deep: true,

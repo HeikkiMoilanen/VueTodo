@@ -38,6 +38,10 @@ body {
   margin-top: 0.5rem;
 }
 
+.todo-list-item .done {
+  text-decoration: line-through;
+}
+
 .todo-list-item-remove {
   color: red;
   background: none;
@@ -68,10 +72,6 @@ h1 {
   border: none;
 }
 
-button {
-  cursor: pointer;
-}
-
-input[type="checkbox"] {
+button, label, input[type="checkbox"] {
   cursor: pointer;
 }
